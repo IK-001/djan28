@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from .models import Member
 
@@ -22,9 +22,25 @@ def main(request):
   template = loader.get_template('main.html')
   return HttpResponse(template.render())
 
+# def testing(request):
+#   template = loader.get_template('template.html')
+#   context = {
+#     'fruits': ['Apple', 'Banana', 'Cherry'],   
+#   }
+#   return HttpResponse(template.render(context, request))
+
+# def testing(request):
+#   mymembers = Member.objects.all().values()
+#   template = loader.get_template('template.html')
+#   context = {
+#     'mymembers': mymembers,
+#   }
+#   return HttpResponse(template.render(context, request))
+
 def testing(request):
+  mydata = Member.objects.all()
   template = loader.get_template('template.html')
   context = {
-    'fruits': ['Apple', 'Banana', 'Cherry'],   
+    'mymembers': mydata,
   }
   return HttpResponse(template.render(context, request))
